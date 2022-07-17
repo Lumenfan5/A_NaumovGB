@@ -3,7 +3,12 @@
 --- !u!78 &1
 TagManager:
   serializedVersion: 2
-  tags: []
+  tags:
+  - MainCharacter
+  - Enemy
+  - Mina
+  - first aid kit
+  - Projectile
   layers:
   - Default
   - TransparentFX
