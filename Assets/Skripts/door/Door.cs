@@ -5,9 +5,9 @@ using UnityEngine;
 public class Door : MonoBehaviour
 {
     
-    public GameObject door;
-    float angularSpeed = 20f;
-    public Transform doorOpen;
+    //public GameObject door;
+    //float angularSpeed = 20f;
+    //public Transform doorOpen;
 
     //private void Update()
     //{
