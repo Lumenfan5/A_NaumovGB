@@ -13,8 +13,8 @@ public class Playermove : MonoBehaviour
     private const string Ground = "Ground";
     private bool isGround = true;
     private Rigidbody rb;
-
-
+    private bool Idle;
+    private Animator anim;
     private void Update()
     {
         Move();
@@ -25,18 +25,26 @@ public class Playermove : MonoBehaviour
     private void Awake()
     {
         rb = GetComponent<Rigidbody>();
+        anim = GetComponent<Animator>();
     }
 
     private void Move()
     {
+
         if (Input.GetKey(KeyCode.W))
         {
+            anim.SetBool("Idle", true);
             transform.localPosition += transform.forward * speed * Time.deltaTime;
             if (Input.GetKey(KeyCode.LeftShift))
             {
-                transform.localPosition += 2*(transform.forward * speed * Time.deltaTime);
+                transform.localPosition += 2 * (transform.forward * speed * Time.deltaTime);
+                anim.SetBool("Idle", false);
+                anim.SetBool("Run", true);
             }
+            if (Input.GetKeyUp(KeyCode.LeftShift))
+            { anim.SetBool("Run", false); }
         }
+        else anim.SetBool("Idle", false);
         if (Input.GetKey(KeyCode.S))
         {
             transform.localPosition += -transform.forward * speed * Time.deltaTime;
@@ -56,6 +64,7 @@ public class Playermove : MonoBehaviour
         }
     }
 
+    
     private void OnCollisionEnter(Collision collision)
     {
         isGround = collision.gameObject.CompareTag(Ground);
